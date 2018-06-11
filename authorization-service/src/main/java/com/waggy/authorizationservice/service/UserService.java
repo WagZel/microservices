@@ -1,6 +1,6 @@
-package com.waggy.authorisationservice.service;
+package com.waggy.authorizationservice.service;
 
-import com.waggy.authorisationservice.domain.User;
+import com.waggy.authorizationservice.domain.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

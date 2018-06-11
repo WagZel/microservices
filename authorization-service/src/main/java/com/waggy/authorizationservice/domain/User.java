@@ -1,4 +1,4 @@
-package com.waggy.authorisationservice.domain;
+package com.waggy.authorizationservice.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

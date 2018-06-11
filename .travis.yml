@@ -19,34 +19,34 @@ after_success:
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
 
   # CONFIG SERVICE
-  - export CONFIG=sqshq/microservices-config
-  - docker build -t $CONFIG:$COMMIT ./config
+  - export CONFIG=WagZel/microservices-config
+  - docker build -t $CONFIG:$COMMIT ./configuration-service
   - docker tag $CONFIG:$COMMIT $CONFIG:$TAG
   - docker push $CONFIG
 
   # REGISTRY
-  - export REGISTRY=sqshq/microservices-registry
+  - export REGISTRY=WagZel/microservices-registration-service
   - docker build -t $REGISTRY:$COMMIT ./registry
   - docker tag $REGISTRY:$COMMIT $REGISTRY:$TAG
   - docker push $REGISTRY
 
   # GATEWAY
-  - export GATEWAY=sqshq/microservices-gateway
-  - docker build -t $GATEWAY:$COMMIT ./gateway
+  - export GATEWAY=WagZel/microservices-gateway
+  - docker build -t $GATEWAY:$COMMIT ./gateway-service
   - docker tag $GATEWAY:$COMMIT $GATEWAY:$TAG
   - docker push $GATEWAY
 
   # AUTH SERVICE
-  - export AUTH_SERVICE=sqshq/microservices-auth
-  - docker build -t $AUTH_SERVICE:$COMMIT ./auth-service
+  - export AUTH_SERVICE=WagZel/microservices-auth
+  - docker build -t $AUTH_SERVICE:$COMMIT ./authorization-service
   - docker tag $AUTH_SERVICE:$COMMIT $AUTH_SERVICE:$TAG
   - docker push $AUTH_SERVICE
 
-  # ACCOUNT SERVICE
-  - export ACCOUNT_SERVICE=sqshq/microservices-hello
-  - docker build -t $ACCOUNT_SERVICE:$COMMIT ./account-service
-  - docker tag $ACCOUNT_SERVICE:$COMMIT $ACCOUNT_SERVICE:$TAG
-  - docker push $ACCOUNT_SERVICE
+  # HELLO SERVICE
+  - export $HELLO_SERVICE=WagZel/microservices-hello
+  - docker build -t $HELLO_SERVICE:$COMMIT ./hello-service
+  - docker tag $HELLO_SERVICE:$COMMIT $HELLO_SERVICE:$TAG
+  - docker push $HELLO_SERVICE
 
 notifications:
   email:

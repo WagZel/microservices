@@ -1,4 +1,4 @@
-package com.waggy.authorisationservice.controller;
+package com.waggy.authorizationservice.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
