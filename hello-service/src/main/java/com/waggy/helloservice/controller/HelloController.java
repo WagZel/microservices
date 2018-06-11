@@ -19,7 +19,7 @@ public class HelloController {
 
     @PreAuthorize("#oauth2.hasScope('server')")
     @RequestMapping(path = "/{name}", method = RequestMethod.GET)
-    public String getHelloUser(@PathVariable String name) {
+    public String getHelloUser(@PathVariable Principal principal) {
         return "Hello, " + principal.getName();
     }
 }
