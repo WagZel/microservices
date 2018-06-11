@@ -20,32 +20,32 @@ after_success:
 
   # CONFIG SERVICE
   - export CONFIG=wagzel/microservices-config
-  - docker build -t $CONFIG:$COMMIT ./configuration-service
-  - docker tag $CONFIG:$COMMIT $CONFIG:$TAG
+  - docker build -t $CONFIG_$COMMIT ./configuration-service
+  - docker tag $CONFIG_$COMMIT $CONFIG:$TAG
   - docker push $CONFIG
 
   # REGISTRY
   - export REGISTRY=wagzel/microservices-registration-service
-  - docker build -t $REGISTRY:$COMMIT ./registry
-  - docker tag $REGISTRY:$COMMIT $REGISTRY:$TAG
+  - docker build -t $REGISTRY_$COMMIT ./registry
+  - docker tag $REGISTRY_$COMMIT $REGISTRY:$TAG
   - docker push $REGISTRY
 
   # GATEWAY
   - export GATEWAY=wagzel/microservices-gateway
-  - docker build -t $GATEWAY:$COMMIT ./gateway-service
-  - docker tag $GATEWAY:$COMMIT $GATEWAY:$TAG
+  - docker build -t $GATEWAY_$COMMIT ./gateway-service
+  - docker tag $GATEWAY_$COMMIT $GATEWAY:$TAG
   - docker push $GATEWAY
 
   # AUTH SERVICE
   - export AUTH_SERVICE=wagzel/microservices-auth
-  - docker build -t $AUTH_SERVICE:$COMMIT ./authorization-service
-  - docker tag $AUTH_SERVICE:$COMMIT $AUTH_SERVICE:$TAG
+  - docker build -t $AUTH_SERVICE_$COMMIT ./authorization-service
+  - docker tag $AUTH_SERVICE_$COMMIT $AUTH_SERVICE:$TAG
   - docker push $AUTH_SERVICE
 
   # HELLO SERVICE
   - export $HELLO_SERVICE=wagzel/microservices-hello
-  - docker build -t $HELLO_SERVICE:$COMMIT ./hello-service
-  - docker tag $HELLO_SERVICE:$COMMIT $HELLO_SERVICE:$TAG
+  - docker build -t $HELLO_SERVICE_$COMMIT ./hello-service
+  - docker tag $HELLO_SERVICE_$COMMIT $HELLO_SERVICE_$TAG
   - docker push $HELLO_SERVICE
 
 notifications:
