@@ -1,0 +1,8 @@
+FROM java:8-jre
+MAINTAINER Ivan Zelinov <wag6051@gmail.com>
+
+RUN mkdir /workdir
+ADD build/distributions/auth.tar /workdir/
+WORKDIR /workdir
+CMD /bin/bash auth/bin/auth
+EXPOSE 1001
