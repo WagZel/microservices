@@ -19,31 +19,31 @@ after_success:
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
 
   # CONFIG SERVICE
-  - export CONFIG=wagzel/microservices-configuration-service
+  - export CONFIG=waggi/microservices-configuration-service
   - docker build -t $CONFIG_$COMMIT ./configuration-service
   - docker tag $CONFIG_$COMMIT $CONFIG_$TAG
   - docker push $CONFIG
 
   # REGISTRY
-  - export REGISTRY=wagzel/microservices-registration-service
+  - export REGISTRY=waggi/microservices-registration-service
   - docker build -t $REGISTRY_$COMMIT ./registration-service
   - docker tag $REGISTRY_$COMMIT $REGISTRY_$TAG
   - docker push $REGISTRY
 
   # GATEWAY
-  - export GATEWAY=wagzel/microservices-gateway-service
+  - export GATEWAY=waggi/microservices-gateway-service
   - docker build -t $GATEWAY_$COMMIT ./gateway-service
   - docker tag $GATEWAY_$COMMIT $GATEWAY_$TAG
   - docker push $GATEWAY
 
   # AUTH SERVICE
-  - export AUTH_SERVICE=wagzel/microservices-authorization-service
+  - export AUTH_SERVICE=waggi/microservices-authorization-service
   - docker build -t $AUTH_SERVICE_$COMMIT ./authorization-service
   - docker tag $AUTH_SERVICE_$COMMIT $AUTH_SERVICE_$TAG
   - docker push $AUTH_SERVICE
 
   # HELLO SERVICE
-  - export $HELLO_SERVICE=wagzel/microservices-hello-service
+  - export $HELLO_SERVICE=waggi/microservices-hello-service
   - docker build -t $HELLO_SERVICE_$COMMIT ./hello-service
   - docker tag $HELLO_SERVICE_$COMMIT $HELLO_SERVICE_$TAG
   - docker push $HELLO_SERVICE
