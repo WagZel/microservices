@@ -16,8 +16,13 @@ services:
     image: waggi/microservices-registration-service
     restart: always
     depends_on:
-      configuration-service:
-        condition: service_healthy
+      - configuration-service
+    entrypoint: /bin/sh
+    command: >
+      -c "
+      while ! (nc -z configuration-service 1000); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
+      java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n -jar -Dspring.profiles.active=docker /app.jar
+      "
     ports:
       - 8761:8761
     logging:
@@ -31,8 +36,12 @@ services:
     image: waggi/microservices-gateway-service
     restart: always
     depends_on:
-      configuration-service:
-        condition: service_healthy
+      - configuration-service
+    command: >
+      -c "
+      while ! (nc -z configuration-service 1000); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
+      java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n -jar -Dspring.profiles.active=docker /app.jar
+      "
     ports:
       - 8080:1003
     logging:
@@ -47,8 +56,12 @@ services:
     image: waggi/microservices-authorization-service
     restart: always
     depends_on:
-      configuration-service:
-        condition: service_healthy
+      - configuration-service
+    command: >
+      -c "
+      while ! (nc -z configuration-service 1000); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
+      java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n -jar -Dspring.profiles.active=docker /app.jar
+      "
     logging:
       options:
         max-size: "10m"
@@ -61,8 +74,12 @@ services:
     image: waggi/microservices-hello-service
     restart: always
     depends_on:
-      configuration-service:
-        condition: service_healthy
+      - configuration-service
+    command: >
+      -c "
+      while ! (nc -z configuration-service 1000); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
+      java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n -jar -Dspring.profiles.active=docker /app.jar
+      "
     logging:
       options:
         max-size: "10m"
