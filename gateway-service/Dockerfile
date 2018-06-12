@@ -4,4 +4,4 @@ MAINTAINER Ivan Zelinov <wag6051@gmail.com>
 ADD ./build/libs/gateway-service-0.0.1-SNAPSHOT.jar /app/
 CMD ["java", "-Xmx200m", "-jar", "/app/gateway-service-0.0.1-SNAPSHOT.jar"]
 
-EXPOSE 8080
+EXPOSE 1003
