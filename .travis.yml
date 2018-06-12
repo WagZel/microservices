@@ -13,7 +13,7 @@ env:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  - docker login-u $DOCKER_USER -p $DOCKER_PASS
 
   #TAG
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
@@ -26,7 +26,7 @@ after_success:
 
   # REGISTRY
   - export REGISTRY=wagzel/microservices-registration-service
-  - docker build -t $REGISTRY_$COMMIT ./registry
+  - docker build -t $REGISTRY_$COMMIT ./registration-service
   - docker tag $REGISTRY_$COMMIT $REGISTRY:$TAG
   - docker push $REGISTRY
 
