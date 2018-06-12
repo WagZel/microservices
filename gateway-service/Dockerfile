@@ -1,8 +1,7 @@
-FROM java:8-jre
+FROM openjdk:8
 MAINTAINER Ivan Zelinov <wag6051@gmail.com>
 
-RUN mkdir /workdir
-ADD build/distributions/gateway-service.tar /workdir/
-WORKDIR /workdir
-CMD /bin/bash gateway-service/bin/gateway-service
+ADD ./build/libs/gateway-service-0.0.1-SNAPSHOT.jar /app/
+CMD ["java", "-Xmx200m", "-jar", "/app/gateway-service-0.0.1-SNAPSHOT.jar"]
+
 EXPOSE 8080

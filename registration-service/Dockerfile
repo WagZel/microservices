@@ -1,8 +1,7 @@
-FROM java:8-jre
+FROM openjdk:8
 MAINTAINER Ivan Zelinov <wag6051@gmail.com>
 
-RUN mkdir /workdir
-ADD build/distributions/registration-service.tar /workdir/
-WORKDIR /workdir
-CMD /bin/bash registration-service/bin/registration-service
+ADD ./build/libs/registration-service-0.0.1-SNAPSHOT.jar /app/
+CMD ["java", "-Xmx200m", "-jar", "/app/registration-service-0.0.1-SNAPSHOT.jar"]
+
 EXPOSE 8761

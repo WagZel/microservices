@@ -1,8 +1,7 @@
-FROM java:8-jre
+FROM openjdk:8
 MAINTAINER Ivan Zelinov <wag6051@gmail.com>
 
-RUN mkdir /workdir
-ADD build/distributions/hello-service.tar /workdir/
-WORKDIR /workdir
-CMD /bin/bash hello-service/bin/hello-service
+ADD ./build/libs/hello-service-0.0.1-SNAPSHOT.jar /app/
+CMD ["java", "-Xmx200m", "-jar", "/app/hello-service-0.0.1-SNAPSHOT.jar"]
+
 EXPOSE 1002
