@@ -43,7 +43,7 @@ after_success:
   - docker push $AUTH_SERVICE
 
   # HELLO SERVICE
-  - export $HELLO_SERVICE=waggi/microservices-hello-service
+  - export HELLO_SERVICE=waggi/microservices-hello-service
   - docker build -t $HELLO_SERVICE:$COMMIT ./hello-service
   - docker tag $HELLO_SERVICE:$COMMIT $HELLO_SERVICE:$TAG
   - docker push $HELLO_SERVICE
