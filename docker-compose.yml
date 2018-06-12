@@ -1,0 +1,69 @@
+version: '2.1'
+services:
+  configuration-service:
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+    image: wagzel/microservices-configuration-service
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  registration-service:
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+    image: wagzel/microservices-registration-service
+    restart: always
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+    ports:
+      - 8761:8761
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  gateway-service:
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+    image: wagzel/microservices-gateway-service
+    restart: always
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+    ports:
+      - 8080:1003
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  authorization-service:
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      HELLO_SERVICE_PASSWORD: $HELLO_SERVICE_PASSWORD
+    image: wagzel/microservices-authorization-service
+    restart: always
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  hello-service:
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      HELLO_SERVICE_PASSWORD: $HELLO_SERVICE_PASSWORD
+    image: wagzel/microservices-hello-service
+    restart: always
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"

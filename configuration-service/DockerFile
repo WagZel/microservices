@@ -2,7 +2,7 @@ FROM java:8-jre
 MAINTAINER Ivan Zelinov <wag6051@gmail.com>
 
 RUN mkdir /workdir
-ADD build/distributions/config.tar /workdir/
+ADD build/distributions/configuration-service.tar /workdir/
 WORKDIR /workdir
-CMD /bin/bash config/bin/config
+CMD /bin/bash configuration-service/bin/configuration-service
 EXPOSE 1000
