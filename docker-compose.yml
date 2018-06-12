@@ -16,7 +16,8 @@ services:
     image: waggi/microservices-registration-service
     restart: always
     depends_on:
-      - configuration-service.condition=service_healthy
+      - configuration-service:
+        condition: service_healthy
     ports:
       - 8761:8761
     logging:
@@ -30,7 +31,8 @@ services:
     image: waggi/microservices-gateway-service
     restart: always
     depends_on:
-      - configuration-service.condition=service_healthy
+      - configuration-service:
+        condition: service_healthy
     ports:
       - 8080:1003
     logging:
@@ -45,7 +47,8 @@ services:
     image: waggi/microservices-authorization-service
     restart: always
     depends_on:
-      - configuration-service.condition=service_healthy
+      - configuration-service:
+        condition: service_healthy
     logging:
       options:
         max-size: "10m"
@@ -58,7 +61,8 @@ services:
     image: waggi/microservices-hello-service
     restart: always
     depends_on:
-      - configuration-service.condition=service_healthy
+      - configuration-service:
+        condition: service_healthy
     logging:
       options:
         max-size: "10m"
