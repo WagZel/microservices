@@ -37,6 +37,7 @@ services:
     restart: always
     depends_on:
       - configuration-service
+    entrypoint: /bin/sh
     command: >
       -c "
       while ! (nc -z configuration-service 1000); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
@@ -57,6 +58,7 @@ services:
     restart: always
     depends_on:
       - configuration-service
+    entrypoint: /bin/sh
     command: >
       -c "
       while ! (nc -z configuration-service 1000); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
@@ -75,6 +77,7 @@ services:
     restart: always
     depends_on:
       - configuration-service
+    entrypoint: /bin/sh
     command: >
       -c "
       while ! (nc -z configuration-service 1000); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
