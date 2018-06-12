@@ -85,7 +85,7 @@ public class AuthorizationServiceApplication {
                     .scopes("ui")
             .and()
                     .withClient("rest-service")
-                    .secret(env.getProperty("REST_SERVICE_PASSWORD"))
+                    .secret(env.getProperty("HELLO_SERVICE_PASSWORD"))
                     .authorizedGrantTypes("client_credentials", "refresh_token")
                     .scopes("server");
         }
