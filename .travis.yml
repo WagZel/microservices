@@ -20,32 +20,32 @@ after_success:
 
   # CONFIG SERVICE
   - export CONFIG=waggi/microservices-configuration-service
-  - docker build -t $CONFIG_$COMMIT ./configuration-service
-  - docker tag $CONFIG_$COMMIT $CONFIG_$TAG
+  - docker build -t $CONFIG:$COMMIT ./configuration-service
+  - docker tag $CONFIG:$COMMIT $CONFIG:$TAG
   - docker push $CONFIG
 
   # REGISTRY
   - export REGISTRY=waggi/microservices-registration-service
-  - docker build -t $REGISTRY_$COMMIT ./registration-service
-  - docker tag $REGISTRY_$COMMIT $REGISTRY_$TAG
+  - docker build -t $REGISTRY:$COMMIT ./registration-service
+  - docker tag $REGISTRY:$COMMIT $REGISTRY:$TAG
   - docker push $REGISTRY
 
   # GATEWAY
   - export GATEWAY=waggi/microservices-gateway-service
-  - docker build -t $GATEWAY_$COMMIT ./gateway-service
-  - docker tag $GATEWAY_$COMMIT $GATEWAY_$TAG
+  - docker build -t $GATEWAY:$COMMIT ./gateway-service
+  - docker tag $GATEWAY:$COMMIT $GATEWAY:$TAG
   - docker push $GATEWAY
 
   # AUTH SERVICE
   - export AUTH_SERVICE=waggi/microservices-authorization-service
-  - docker build -t $AUTH_SERVICE_$COMMIT ./authorization-service
-  - docker tag $AUTH_SERVICE_$COMMIT $AUTH_SERVICE_$TAG
+  - docker build -t $AUTH_SERVICE:$COMMIT ./authorization-service
+  - docker tag $AUTH_SERVICE:$COMMIT $AUTH_SERVICE:$TAG
   - docker push $AUTH_SERVICE
 
   # HELLO SERVICE
   - export $HELLO_SERVICE=waggi/microservices-hello-service
-  - docker build -t $HELLO_SERVICE_$COMMIT ./hello-service
-  - docker tag $HELLO_SERVICE_$COMMIT $HELLO_SERVICE_$TAG
+  - docker build -t $HELLO_SERVICE:$COMMIT ./hello-service
+  - docker tag $HELLO_SERVICE:$COMMIT $HELLO_SERVICE:$TAG
   - docker push $HELLO_SERVICE
 
 notifications:
