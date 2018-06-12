@@ -2,7 +2,7 @@ version: '3.6'
 services:
   configuration-service:
     environment:
-      CONFIG_SERVICE_PASSWORD: 123456
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
     image: waggi/microservices-configuration-service
     restart: always
     logging:
@@ -12,7 +12,7 @@ services:
 
   registration-service:
     environment:
-      CONFIG_SERVICE_PASSWORD: 123456
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
     image: waggi/microservices-registration-service
     restart: always
     depends_on:
@@ -26,7 +26,7 @@ services:
 
   gateway-service:
     environment:
-      CONFIG_SERVICE_PASSWORD: 123456
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
     image: waggi/microservices-gateway-service
     restart: always
     depends_on:
@@ -40,8 +40,8 @@ services:
 
   authorization-service:
     environment:
-      CONFIG_SERVICE_PASSWORD: 123456
-      HELLO_SERVICE_PASSWORD: 123456
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      HELLO_SERVICE_PASSWORD: $HELLO_SERVICE_PASSWORD
     image: waggi/microservices-authorization-service
     restart: always
     depends_on:
@@ -53,8 +53,8 @@ services:
 
   hello-service:
     environment:
-      CONFIG_SERVICE_PASSWORD: 123456
-      HELLO_SERVICE_PASSWORD: 123456
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      HELLO_SERVICE_PASSWORD: $HELLO_SERVICE_PASSWORD
     image: waggi/microservices-hello-service
     restart: always
     depends_on:
