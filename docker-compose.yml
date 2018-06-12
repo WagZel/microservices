@@ -1,8 +1,8 @@
-version: '2.1'
+version: '3.6'
 services:
   configuration-service:
     environment:
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      CONFIG_SERVICE_PASSWORD: 123456
     image: waggi/microservices-configuration-service
     restart: always
     logging:
@@ -12,12 +12,11 @@ services:
 
   registration-service:
     environment:
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      CONFIG_SERVICE_PASSWORD: 123456
     image: waggi/microservices-registration-service
     restart: always
     depends_on:
-      configuration-service:
-        condition: service_healthy
+      - configuration-service
     ports:
       - 8761:8761
     logging:
@@ -27,12 +26,11 @@ services:
 
   gateway-service:
     environment:
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      CONFIG_SERVICE_PASSWORD: 123456
     image: waggi/microservices-gateway-service
     restart: always
     depends_on:
-      configuration-service:
-        condition: service_healthy
+      - configuration-service
     ports:
       - 8080:1003
     logging:
@@ -42,13 +40,12 @@ services:
 
   authorization-service:
     environment:
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
-      HELLO_SERVICE_PASSWORD: $HELLO_SERVICE_PASSWORD
+      CONFIG_SERVICE_PASSWORD: 123456
+      HELLO_SERVICE_PASSWORD: 123456
     image: waggi/microservices-authorization-service
     restart: always
     depends_on:
-      configuration-service:
-        condition: service_healthy
+      - configuration-service
     logging:
       options:
         max-size: "10m"
@@ -56,13 +53,12 @@ services:
 
   hello-service:
     environment:
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
-      HELLO_SERVICE_PASSWORD: $HELLO_SERVICE_PASSWORD
+      CONFIG_SERVICE_PASSWORD: 123456
+      HELLO_SERVICE_PASSWORD: 123456
     image: waggi/microservices-hello-service
     restart: always
     depends_on:
-      configuration-service:
-        condition: service_healthy
+      - configuration-service
     logging:
       options:
         max-size: "10m"
