@@ -1,4 +1,4 @@
-version: '3.6'
+version: '2.4'
 services:
   configuration-service:
     environment:
@@ -16,7 +16,7 @@ services:
     image: waggi/microservices-registration-service
     restart: always
     depends_on:
-      - configuration-service:
+      configuration-service:
         condition: service_healthy
     ports:
       - 8761:8761
@@ -31,7 +31,7 @@ services:
     image: waggi/microservices-gateway-service
     restart: always
     depends_on:
-      - configuration-service:
+      configuration-service:
         condition: service_healthy
     ports:
       - 8080:1003
@@ -47,7 +47,7 @@ services:
     image: waggi/microservices-authorization-service
     restart: always
     depends_on:
-      - configuration-service:
+      configuration-service:
         condition: service_healthy
     logging:
       options:
@@ -61,7 +61,7 @@ services:
     image: waggi/microservices-hello-service
     restart: always
     depends_on:
-      - configuration-service:
+      configuration-service:
         condition: service_healthy
     logging:
       options:
