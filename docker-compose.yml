@@ -3,7 +3,7 @@ services:
   configuration-service:
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
-    image: wagzel/microservices-configuration-service
+    image: waggi/microservices-configuration-service
     restart: always
     logging:
       options:
@@ -13,7 +13,7 @@ services:
   registration-service:
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
-    image: wagzel/microservices-registration-service
+    image: waggi/microservices-registration-service
     restart: always
     depends_on:
       configuration-service:
@@ -28,7 +28,7 @@ services:
   gateway-service:
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
-    image: wagzel/microservices-gateway-service
+    image: waggi/microservices-gateway-service
     restart: always
     depends_on:
       configuration-service:
@@ -44,7 +44,7 @@ services:
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       HELLO_SERVICE_PASSWORD: $HELLO_SERVICE_PASSWORD
-    image: wagzel/microservices-authorization-service
+    image: waggi/microservices-authorization-service
     restart: always
     depends_on:
       configuration-service:
@@ -58,7 +58,7 @@ services:
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       HELLO_SERVICE_PASSWORD: $HELLO_SERVICE_PASSWORD
-    image: wagzel/microservices-hello-service
+    image: waggi/microservices-hello-service
     restart: always
     depends_on:
       configuration-service:
