@@ -1,6 +1,6 @@
 package com.waggy.helloservice.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
+@RefreshScope
 @RestController
 public class HelloController {
 
@@ -16,8 +17,7 @@ public class HelloController {
         return "Hello World";
     }
 
-    @PreAuthorize("#oauth2.hasScope('server')")
-    @RequestMapping(path = "/{name}", method = RequestMethod.GET)
+    @RequestMapping(path = "/current", method = RequestMethod.GET)
     public String getHelloUser(@PathVariable Principal principal) {
         return "Hello, " + principal.getName();
     }

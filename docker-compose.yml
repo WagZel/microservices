@@ -1,4 +1,4 @@
-version: '2.4'
+version: '3.6'
 services:
   configuration-service:
     environment:
@@ -15,14 +15,10 @@ services:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
     image: waggi/microservices-registration-service
     restart: always
+    links:
+      - configuration-service:configuration-service
     depends_on:
       - configuration-service
-    entrypoint: /bin/sh
-    command: >
-      -c "
-      while ! (nc -z configuration-service 1000); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
-      java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n -jar -Dspring.profiles.active=docker /app.jar
-      "
     ports:
       - 8761:8761
     logging:
@@ -35,14 +31,10 @@ services:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
     image: waggi/microservices-gateway-service
     restart: always
+    links:
+      - configuration-service:configuration-service
     depends_on:
       - configuration-service
-    entrypoint: /bin/sh
-    command: >
-      -c "
-      while ! (nc -z configuration-service 1000); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
-      java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n -jar -Dspring.profiles.active=docker /app.jar
-      "
     ports:
       - 8080:1003
     logging:
@@ -56,14 +48,10 @@ services:
       HELLO_SERVICE_PASSWORD: $HELLO_SERVICE_PASSWORD
     image: waggi/microservices-authorization-service
     restart: always
+    links:
+      - configuration-service:configuration-service
     depends_on:
       - configuration-service
-    entrypoint: /bin/sh
-    command: >
-      -c "
-      while ! (nc -z configuration-service 1000); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
-      java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n -jar -Dspring.profiles.active=docker /app.jar
-      "
     logging:
       options:
         max-size: "10m"
@@ -75,14 +63,10 @@ services:
       HELLO_SERVICE_PASSWORD: $HELLO_SERVICE_PASSWORD
     image: waggi/microservices-hello-service
     restart: always
+    links:
+      - configuration-service:configuration-service
     depends_on:
       - configuration-service
-    entrypoint: /bin/sh
-    command: >
-      -c "
-      while ! (nc -z configuration-service 1000); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
-      java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n -jar -Dspring.profiles.active=docker /app.jar
-      "
     logging:
       options:
         max-size: "10m"

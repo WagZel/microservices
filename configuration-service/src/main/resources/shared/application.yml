@@ -10,12 +10,17 @@ hystrix:
           thread:
             timeoutInMilliseconds: 10000
 
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
 eureka:
   instance:
+    hostname: registration-service
     prefer-ip-address: true
   client:
-      serviceUrl:
-        defaultZone: http://registration-service:8761/eureka/
+    serviceUrl:
+      defaultZone: http://user:123456@registration-service:8761/eureka/
 
 security:
   oauth2:

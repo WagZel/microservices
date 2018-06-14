@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/")
 public class UserController {
 
     @RequestMapping(value = "/current", method = RequestMethod.GET)

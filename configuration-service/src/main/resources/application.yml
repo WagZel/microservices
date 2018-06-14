@@ -1,3 +1,17 @@
+server:
+  port: 1000
+
+eureka:
+  instance:
+    hostname: registration-service
+    prefer-ip-address: true
+    metadata-map:
+      user.name: user
+      user.password: 123456
+  client:
+    service-url:
+      defaultZone: http://user:123456@registration-service:8761/eureka/
+
 spring:
   cloud:
     config:
@@ -6,10 +20,3 @@ spring:
           search-locations: classpath:/shared
   profiles:
     active: native
-
-server:
-  port: 1000
-
-security:
-  user:
-    password: ${CONFIG_SERVICE_PASSWORD}

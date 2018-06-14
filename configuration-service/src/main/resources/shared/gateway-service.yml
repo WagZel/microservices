@@ -19,13 +19,11 @@ zuul:
   routes:
     authorization-service:
         path: /uaa/**
-        url: http://authorization-service:1001
         stripPrefix: false
         sensitiveHeaders:
 
     hello-service:
         path: /hello/**
-        serviceId: hello-service
         stripPrefix: false
         sensitiveHeaders:
 
